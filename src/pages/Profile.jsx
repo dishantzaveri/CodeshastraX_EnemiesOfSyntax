@@ -17,7 +17,7 @@ const Profile = () => {
           </div>
         </div>
 
-        <div className="flex justify-between absolute mb-8 ">
+        <div className="flex justify-between absolute mb-8">
           <div className="shadow bg-white shadow-gray-300 p-8 w-96 flex flex-col rounded h-fit">
             {/* <img
               className="w-[80px] h-[80px] rounded-full object-cover self-center"

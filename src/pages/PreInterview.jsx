@@ -1,0 +1,94 @@
+import { useState } from "react";
+import Button from "@mui/material/Button";
+import { useTheme } from "@mui/material/styles";
+import { Paper } from "@mui/material";
+import { PreInterview } from "../components/PreInterview";
+import { Typography } from "@mui/material";
+import Carousel from "react-material-ui-carousel";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import SideNavbar from "../components/SideNavbar";
+
+const Item = (props) => {
+  const theme = useTheme();
+  const isMedium = useMediaQuery(theme.breakpoints.down("md"));
+
+  return (
+    <Paper sx={{ height: "550px" }}>
+      <Typography
+        variant="h5"
+        sx={{
+          textAlign: "center",
+          borderBottom: "1px solid lightgray",
+          padding: isMedium ? "10px" : "20px",
+          fontSize: isMedium ? "large" : null,
+        }}
+      >
+        {props.item.name}
+      </Typography>
+      <Typography
+        variant="subtitle1"
+        sx={{
+          textAlign: "center",
+          padding: isMedium ? "20px" : "50px",
+          fontSize: isMedium ? "small" : null,
+        }}
+      >
+        {props.item.description}
+      </Typography>
+    </Paper>
+  );
+};
+
+const PreInterview1 = () => {
+  const [modalDisplay, setModalDisplay] = useState(false);
+
+  const items = [
+    {
+      name: "Practice Live Interviews",
+      description:
+        "Interviews can be tough. The pressure to perform well can be overwhelming, and the uncertainty of what lies ahead can be daunting. But fear not, because our innovative application is here to provide you with the ultimate AI interview practice experience. Powered by cutting-edge artificial intelligence, our platform creates realistic simulations of real-world interviews. You'll face a diverse range of common interview questions, and our advanced AI algorithms will analyze your responses, offering valuable feedback and insights. This invaluable tool enables you to pinpoint areas where you can improve, boost your confidence, and equip you with the skills needed to confidently conquer your next interview. Say goodbye to uncertainty and hello to interview success with our AI interview practice platform.",
+    },
+    {
+      name: "Get Instant Analysis On Your Answers",
+      description:
+        "Leveraging the OpenAI API, our platform provides real-time, in-depth analysis of your interview responses. This advanced technology evaluates your content, delivery, and presentation, giving comprehensive feedback to hone your interview skills. Our AI system scrutinizes behavioral and technical responses, focusing on problem-solving abilities and field-specific expertise. The process includes one behavioral and four technical questions, equipping you with the knowledge and confidence to excel in interviews. Boost your interview skills with our AI-driven platform and unlock your potential.",
+    },
+    {
+      name: "Gain Interviewing Confidence",
+      description:
+        "Confidence is pivotal to interview success, and our AI platform is geared to help you build it. We provide real-time feedback on your performance, empowering you to refine your skills and gain self-assuredness. As you practice, you'll understand your strengths and weaknesses better, boosting your confidence in your abilities. This confidence, reflecting in your body language and delivery, will impress interviewers. Notably, confidence also fosters a personal connection with interviewers, raising your chances of landing the job. With our AI-assisted interview training, prepare to ace any interview with confidence, opening doors to a successful career.",
+    },
+    {
+      name: "Why I built this Application",
+      description:
+        "As a self-taught front-end developer with a passion for AI, I recognized the need for better interview preparation tools after completing a web development internship. Struggling to find user-friendly resources, I decided to use my skills to create an innovative application that makes interview preparation easier and more effective. This platform, a fusion of my web development expertise and AI interest, aims to help individuals tackle interview challenges with confidence. It's a testament to my dedication to simplifying the interview preparation process for job seekers globally.",
+    },
+  ];
+
+  return (
+    <div className="flex">
+      <SideNavbar />
+      <div className="w-full flex flex-col items-center py-8 gap-6">
+        <Carousel sx={{ width: "80%" }} animation="slide" interval={20000}>
+          {items.map((item, i) => (
+            <Item key={i} item={item} />
+          ))}
+        </Carousel>
+        <Button
+          onClick={() => {
+            setModalDisplay(!modalDisplay);
+          }}
+          variant="contained"
+        >
+          Get Started
+        </Button>
+        <PreInterview
+          display={modalDisplay}
+          setDisplay={setModalDisplay}
+        ></PreInterview>
+      </div>
+    </div>
+  );
+};
+
+export { PreInterview1 };
