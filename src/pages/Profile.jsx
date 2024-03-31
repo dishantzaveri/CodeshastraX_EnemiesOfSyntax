@@ -1,10 +1,12 @@
 import { MdEmail } from "react-icons/md";
 import { FaBirthdayCake } from "react-icons/fa";
 import { AiFillEdit } from "react-icons/ai";
+import SideNavbar from "../components/SideNavbar";
 const Profile = () => {
   return (
-    <div>
-      <div className="px-60 py-14 bg-gradient-to-r from-[#2eb6b8] via-blue-300  to-[#DAF0F4] w-full h-64 relative">
+    <div className="flex w-full">
+      <SideNavbar />
+      <div className="px-24 py-14 bg-gradient-to-r from-[#2eb6b8] via-blue-300  to-[#DAF0F4] w-full h-64 relative">
         <div className="flex items-center pb-4">
           <div className="w-[150px] h-[150px] bg-black rounded-full object-cover self-center"></div>
           <div className="ml-5">
@@ -36,16 +38,7 @@ const Profile = () => {
                 <FaBirthdayCake />
                 <p className="ml-2">17/06/2002</p>
               </div>
-              <div className="stars ml-2 flex mt-8">
-                <b> Rating </b>
-              </div>
-              <div className="stars ml-2 flex items-center mt-2">
-                <div id="star-rate"></div>
-              </div>
             </div>
-            <button className="uppercase justify-center rounded-full border w-[19vw] py-2 hover:bg-light-blue  hover:text-blue bg-blue text-white transition-all duration-100 mt-8">
-              Connect Now
-            </button>
           </div>
           <div>
             <div className="ml-8  shadow bg-white shadow-gray-300  p-[20px] rounded min-w-[600px]">
@@ -86,7 +79,7 @@ const Profile = () => {
             <div className="ml-8 mt-4 shadow bg-white shadow-gray-300  p-[20px] rounded min-w-[600px] max-w-[700px]">
               <div className="flex justify-between border-b-[1px] border-solid border-gray-300 pb-2 mb-2">
                 <h1 className="font-extrabold text-lg cursor-pointer self-center ">
-                  Startups
+                  Experience
                 </h1>
                 <AiFillEdit size={23} color="#2eb6b8" />
               </div>

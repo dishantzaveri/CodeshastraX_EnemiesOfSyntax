@@ -6,8 +6,22 @@ import company1 from "../assets/company1.jpg";
 import company2 from "../assets/company2.jpeg";
 import JobCard from "../components/JobCard";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Company = () => {
+  const [jobs, setJobs] = useState([]);
+  const fetchJobs = async () => {
+    await axios
+      .get("https://71w0x6q2-8000.inc1.devtunnels.ms/account/jobs/")
+      .then((res) => {
+        console.log(res.data);
+        setJobs(res.data);
+      });
+  };
+  useEffect(() => {
+    fetchJobs();
+  }, []);
   return (
     <div className="flex w-full">
       <SideNavbar />
@@ -52,11 +66,9 @@ const Company = () => {
           </div>
           <div className="text-xl font-semibold my-2">Jobs Available</div>
           <div className="flex gap-4 py-4 w-full overflow-x-auto scrollbar-hide">
-            <JobCard />
-            <JobCard />
-            <JobCard />
-            <JobCard />
-            <JobCard />
+            {jobs
+              ? jobs.map((job) => <JobCard key={job.id} job={job} />)
+              : null}
           </div>
           <div className="text-xl font-semibold my-2">Employee Reviews</div>
           <div className="flex gap-4 items-center px-4 py-2 rounded-xl my-4">

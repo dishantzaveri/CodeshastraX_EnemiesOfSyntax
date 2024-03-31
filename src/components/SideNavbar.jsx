@@ -8,14 +8,15 @@ import { IoBook } from "react-icons/io5";
 import { HiOutlineDotsVertical } from "react-icons/hi";
 import { LiaTrashAltSolid } from "react-icons/lia";
 import { GrUserWorker } from "react-icons/gr";
+import logo from "../assets/logo.png";
 
 const SideNavbar = () => {
   return (
     <div className="flex flex-col justify-between h-screen w-[20vw] px-8 py-8 border-r-2 border-gray-200 sticky top-0">
       <div className="w-full">
         <div className="text-xl font-bold flex gap-4 items-center px-4 mb-8">
-          <AiFillHome />
-          GoodJob
+          <img className="w-16" src={logo} alt="" />
+          Future Forge
         </div>
         <Link
           to="/"
@@ -32,25 +33,25 @@ const SideNavbar = () => {
           Jobs
         </Link>
         <Link
-          to="/"
+          to="/profile"
           className="w-full flex gap-4 items-center text-lg hover:bg-gray-100/15 py-3 px-4 rounded-2xl hover:shadow-sm my-3"
         >
           <TbChartInfographic />
           Dashboard
         </Link>
         <Link
-          to="/"
+          to="/courses"
           className="w-full flex gap-4 items-center text-lg hover:bg-gray-100/15 py-3 px-4 rounded-2xl hover:shadow-sm my-3"
         >
           <MdOutlineScreenSearchDesktop />
           Courses
         </Link>
         <Link
-          to="/"
+          to="/interview"
           className="w-full flex gap-4 items-center text-lg hover:bg-gray-100/15 py-3 px-4 rounded-2xl hover:shadow-sm my-3"
         >
           <IoBook />
-          Learn
+          Practice
         </Link>
       </div>
       <div className="px-4 py-3 rounded-2xl w-full bg-gray-100/50 flex justify-between items-center">

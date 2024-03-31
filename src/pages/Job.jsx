@@ -4,16 +4,32 @@ import logo from "../assets/apple-logo.png";
 import { IoLocationOutline } from "react-icons/io5";
 import { BsBookmarkFill } from "react-icons/bs";
 import JobCard1 from "../components/JobCard1";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Job = () => {
   const { id } = useParams();
+  const [job, setJob] = useState([]);
+  const [jobs, setJobs] = useState([]);
+  const fetchJobs = async () => {
+    await axios
+      .get("https://71w0x6q2-8000.inc1.devtunnels.ms/account/jobs/")
+      .then((res) => {
+        console.log(res.data.filter((x) => x.id === parseInt(id)));
+        setJobs(res.data);
+        setJob(res.data.filter((x) => x.id === parseInt(id))[0]);
+      });
+  };
+  useEffect(() => {
+    fetchJobs();
+  }, []);
   return (
     <div className="h-full flex">
       <SideNavbar />
       <div className="w-full grid grid-cols-12 px-8">
         <div className="px-8 py-6 col-span-8">
           <div className="flex justify-between">
-            <div className="text-4xl font-semibold">UI Designer</div>
+            <div className="text-4xl font-semibold">{job.title}</div>
             <div className="flex gap-2">
               <button className="bg-emerald-500 text-white px-6 py-2 rounded-lg shadow-sm">
                 Apply Now
@@ -31,35 +47,30 @@ const Job = () => {
                   to="/company/123"
                   className="text-emerald-400 text-xl font-semibold"
                 >
-                  Apple
+                  {job.company_name}
                 </Link>
                 <div className="text-xl">•</div>
                 <IoLocationOutline className="text-2xl text-gray-500" />
-                <div className="font-semibold text-gray-500">Atlanta, GA</div>
+                <div className="font-semibold text-gray-500">
+                  {job.location}
+                </div>
               </div>
               <div className="flex gap-4">
                 <div className="bg-gray-100 text-gray-400 text-xs px-2 py-1 rounded-full font-semibold">
-                  Full time
+                  {job.time}
                 </div>
                 <div className="bg-gray-100 text-gray-400 text-xs px-2 py-1 rounded-full font-semibold">
-                  Remote
-                </div>
-                <div className="bg-gray-100 text-gray-400 text-xs px-2 py-1 rounded-full font-semibold">
-                  2-4 Years
+                  {job.period}
                 </div>
               </div>
             </div>
           </div>
           <div className="text-lg font-semibold my-2">About this role</div>
-          <div className="">
-            We are seeking a talented UI Designer to join our dynamic team at
-            Apple. As a UI Designer, you will play a pivotal role in crafting
-            the visual and interactive elements of our software products,
-            ensuring a seamless and delightful user experience across all Apple
-            platforms.
-          </div>
-          <div className="text-lg font-semibold my-2">Key Responsibilities</div>
-          <div className="flex gap-2">
+          <div className="">{job.role}</div>
+          <div className="text-lg font-semibold my-2">Requirements</div>
+          <div className="">{job.requirements}</div>
+          {/* <div className="text-lg font-semibold my-2">Key Responsibilities</div> */}
+          {/* <div className="flex gap-2">
             <div className="">•</div>
             UI Design: Design visually stunning and intuitive user interfaces
             for various Apple software products, including mobile applications,
@@ -115,8 +126,8 @@ const Job = () => {
             Stay Updated: Keep abreast of industry trends, design tools, and
             emerging technologies, and leverage new techniques to continually
             improve the quality and innovation of Apple's user interfaces.
-          </div>
-          <div className="text-lg font-semibold my-2">Qualification</div>
+          </div> */}
+          {/* <div className="text-lg font-semibold my-2">Qualification</div>
           <div className="flex gap-2">
             <div className="">•</div>
             Bachelor's degree in Design, Human-Computer Interaction, or a
@@ -161,7 +172,9 @@ const Job = () => {
             Stay Updated: Keep abreast of industry trends, design tools, and
             emerging technologies, and leverage new techniques to continually
             improve the quality and innovation of Apple's user interfaces.
-          </div>
+          </div> */}
+          <div className="text-lg font-semibold my-2">Qualification</div>
+          <div className="">{job.qualification}</div>
         </div>
         <div className="px-8 py-6 w-full col-span-4">
           <div className="text-lg font-semibold mb-4">Alumnis Working Here</div>
@@ -179,10 +192,9 @@ const Job = () => {
           </div>
           <div className="text-lg font-semibold">Similar Jobs</div>
           <div className="flex flex-col">
-            <JobCard1 />
-            <JobCard1 />
-            <JobCard1 />
-            <JobCard1 />
+            {jobs
+              ? jobs.map((job) => <JobCard key={job.id} job={job} />)
+              : null}
           </div>
         </div>
       </div>
