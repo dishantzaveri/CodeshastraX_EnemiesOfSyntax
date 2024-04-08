@@ -12,7 +12,8 @@ that facilitates seamless connections between these students and potential
 employers. Additionally, the challenge seeks to address recruiters'
 perspectives, ensuring that the platform offers valuable tools and insights to
 attract top talent from these colleges.
-Suggested Features:
+
+
 Participants could propose comprehensive functionalities addressing the
 specific needs of tier 2 and tier 3 college students. Solutions could prioritize
 the creation of user-friendly interfaces, efficient matchmaking algorithms,
